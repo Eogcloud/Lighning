@@ -1,4 +1,9 @@
-var context = document.getElementsByTagName('canvas')[0].getContext('2d');
+var dimensions = [document.documentElement.clientWidth, document.documentElement.clientHeight];
+var canvas = document.getElementById("myCanvas");
+canvas.width = dimensions[0];
+canvas.height = dimensions[1];
+window.addEventListener("resize", setCanvasDimensions);
+var context = canvas.getContext('2d');
 var lastX = context.canvas.width * Math.random();
 var lastY = context.canvas.height * Math.random();
 var hue = 0;
@@ -34,6 +39,12 @@ function clear() {
 function blank() {
     context.fillStyle = 'rgba(0,0,0,0.1)';
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+}
+
+function setCanvasDimensions(){
+  dimensions = [document.documentElement.clientWidth, document.documentElement.clientHeight];
+  canvas.width = dimensions[0];
+  canvas.height = dimensions[1];
 }
 
 setInterval(line, 500);
